@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tetris</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="overlay">
+        <div class="pop-up__wrapper">
+            <div class="pop-up">
+                <h2 class="text-center">Настройки</h2>
+                <div class="set_block">
+                    <span class="text-center">Размеры поля</span>
+                    <div class="flex">
+                        <div class="set_block">
+                            <span>Ширина:</span>
+                            <input type="number" min="10" id="x">
+                        </div>
+                        <div class="set_block">
+                            <span>Высота:</span>
+                            <input type="number" min="20" id="y">
+                        </div>
+                    </div>
+                </div>
+                <div class="set_block">
+                    <span class="text-center">Скорсоть</span>
+                    <div class="flex">
+                        <div class="set_block">
+                            <span>Начальная:</span>
+                            <input type="number" min="25" max="1500" id="speed">
+                        </div>
+                        <div class="set_block">
+                            <span>Минимальная:</span>
+                            <input type="number" min="25" max="1500" id="speedMin">
+                        </div>
+                    </div>
+                </div>
+                <div class="set_block">
+                    <span class="text-center">Ускорение</span>
+                    <div class="flex">
+                        <div class="set_block">
+                            <span>На:</span>
+                            <input type="number" min="0" max="150" id="speedUpBy">
+                        </div>
+                        <div class="set_block">
+                            <span>Каждый:</span>
+                            <input type="number" min="0" id="speeUpLevels">
+                        </div>
+                    </div>
+                </div>
+                <div class="set_block">
+                    <div class="flex">
+                        <button id="popUpSaveBtn">Save</button>
+                        <button id="popUpCloseBtn">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main__wrapper" id="game">
+        <div class="header">
+            <div class="lines-counter__wrapper">
+                <span>Линия: </span>
+                <span id="lines_counter">0</span>
+            </div>
+            <div class="score-counter__wrapper">
+                <span>Очки: </span>
+                <span id="score_counter">0</span>
+            </div>
+            <div class="speed-counter__wrapper">
+                <span>Уровень: </span>
+                <span id="speed_level_counter">0</span>
+            </div>
+            <div class="cta">
+                <span>Управление:</span>
+                <div class="cta_btn">
+                    <button id="set_btn">S</button>
+                    <button id="reload_btn">R</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="module" src="game.js"></script>
+</html>
