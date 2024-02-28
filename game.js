@@ -17,7 +17,7 @@ const currentFigure = {
     currentPivot: null,
     figureParams: null,
     moves: 0
-}
+};
 
 let fieldState = [];
 let gameState = getGameState();
@@ -25,9 +25,10 @@ let gameState = getGameState();
 function initGame(){
     initFieldArr();
     setListeners();
-    createFigure(getRandFigure());
+    createFigure(gameState.nextFigureShape);
+    setNextFigureShape();
     cvs.setRandColor();
-    cvs.updateState(fieldState);
+    cvs.updateState(fieldState, gameState.nextFigureShape);
 }
 
 function initFieldArr(){
@@ -52,7 +53,8 @@ function startGame() {
         }
 
         checkLine();
-        createFigure(getRandFigure());
+        createFigure(gameState.nextFigureShape);
+        setNextFigureShape();
         gameState.inputMove = [];
     }
 
@@ -69,7 +71,7 @@ function startGame() {
     }
 
     updateInterface();
-    cvs.updateState(fieldState);
+    cvs.updateState(fieldState, gameState.nextFigureShape);
 
     setTimeout(() => {
         startGame();
@@ -94,7 +96,8 @@ function makeInputMove(btnCase){
             while(true){
                 if(!moveDown()){
                     checkLine();
-                    createFigure(getRandFigure());
+                    createFigure(gameState.nextFigureShape);
+                    setNextFigureShape();
                     break;
                 }
             }
@@ -419,9 +422,10 @@ function reload(){
     gameState = getGameState();
     fieldState = [];
     initFieldArr();
-    createFigure(getRandFigure());
+    createFigure(gameState.nextFigureShape);
+    setNextFigureShape();
     cvs.setRandColor();
-    cvs.updateState(fieldState);
+    cvs.updateState(fieldState, gameState.nextFigureShape);
     updateInterface();
     startGame();
 }
@@ -433,6 +437,7 @@ function getGameState(){
         score: 0,
         currentSpeed: config.speed,
         speedLevel: 1,
+        nextFigureShape: getRandFigure(),
         pause: false,
     };
 }
@@ -448,6 +453,10 @@ function setSetings(newValues){
 
 function gamePause(value){
     gameState.pause = value;
+}
+
+function setNextFigureShape(){
+    gameState.nextFigureShape = getRandFigure();
 }
 
 function lose(){
